@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Portfolio | Thiyagarajan Palanisamy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --glossy-white: #ffffff;
+            --off-white: #f8f9fa;
+            --deep-purple: #4834d4;
+            --soft-purple: #686de0;
+            --text-dark: #2d3436;
+            --shadow: 0 8px 25px rgba(0,0,0,0.05);
+            --hover-shadow: 0 12px 35px rgba(72, 52, 212, 0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { 
+            font-family: 'Open Sans', sans-serif; 
+            background-color: var(--glossy-white); 
+            color: var(--text-dark); 
+            line-height: 1.3;
+        }
+
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        
+        .reveal.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        header {
+            padding: 15px 8% 10px;
+            background: radial-gradient(circle at top right, #f3f0ff 0%, #ffffff 40%);
+        }
+
+        .logo-container { text-align: left; margin-bottom: 10px; }
+        .logo-img { height: 55px; width: auto; max-width: 100%; object-fit: contain; }
+
+        .header-flex {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .hero-content { flex: 1; }
+        .hero-image-container { flex: 0 0 200px; }
+        
+        .profile-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 10px 10px 0px var(--soft-purple);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .profile-img:hover { transform: translate(-3px, -3px); box-shadow: 14px 14px 0px var(--deep-purple); }
+
+        h1 { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; color: var(--deep-purple); line-height: 1.1; margin-bottom: 5px; }
+        .subtitle { font-size: 0.85rem; font-weight: 700; color: var(--soft-purple); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1.2px; }
+        
+        .contact-top { font-size: 0.8rem; margin-bottom: 15px; display: flex; flex-wrap: wrap; gap: 12px; color: #555; }
+        .contact-top a { color: var(--deep-purple); text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; transition: 0.3s; }
+        .contact-top a:hover { color: var(--soft-purple); border-bottom: 1px solid var(--soft-purple); }
+
+        .exp-summary {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+            border-left: 4px solid var(--deep-purple);
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+        }
+        .exp-summary:hover { background: rgba(255, 255, 255, 0.9); transform: translateX(5px); }
+        .exp-summary h2 { font-size: 1rem; color: var(--deep-purple); margin-bottom: 10px; text-transform: uppercase; }
+        .exp-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .exp-list li { font-size: 0.8rem; color: #444; display: flex; align-items: flex-start; gap: 6px; }
+        .exp-list li i { color: var(--soft-purple); margin-top: 2px; }
+
+        section { padding: 15px 8%; }
+        .section-title { text-align: center; font-family: 'Montserrat', sans-serif; margin-bottom: 15px; color: var(--deep-purple); font-size: 1.4rem; }
+
+        .roadmap-row {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 5px 5px 15px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .roadmap-card {
+            flex: 0 0 280px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f0f0f0;
+            border-left: 4px solid var(--soft-purple);
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .roadmap-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: var(--hover-shadow);
+            border-left-width: 8px;
+        }
+
+        /* MORE TRANSPARENT YEAR TAGS */
+        .year-tag { font-weight: 800; color: rgba(104, 109, 224, 0.38); font-size: 1.2rem; position: absolute; right: 10px; top: 8px; transition: 0.3s; }
+        .roadmap-card:hover .year-tag { color: rgba(104, 109, 224, 0.55); transform: scale(1.1); }
+
+        .roadmap-card h3 { font-size: 0.9rem; color: var(--deep-purple); margin-bottom: 3px; }
+        .roadmap-card p { font-size: 0.75rem; margin-bottom: 6px; font-weight: 600; }
+        .roadmap-card ul { font-size: 0.75rem; padding-left: 12px; color: #666; }
+
+        .carousel-container { overflow: hidden; padding: 10px 0; background: #fafaff; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
+        .carousel-track { display: flex; gap: 15px; animation: scroll 40s linear infinite; width: max-content; }
+        .carousel-item { flex: 0 0 auto; background: white; padding: 8px 20px; border-radius: 25px; border: 1px solid #eee; font-weight: 600; font-size: 0.75rem; color: var(--deep-purple); transition: 0.3s; }
+        .carousel-item:hover { background: var(--deep-purple); color: white; transform: scale(1.05); }
+
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .degree-grid { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .degree-card { 
+            flex: 1 1 280px; 
+            max-width: 400px; 
+            padding: 15px; 
+            text-align: center; 
+            background: white; 
+            border-radius: 10px; 
+            border-top: 3px solid var(--soft-purple); 
+            box-shadow: var(--shadow);
+            transition: 0.4s ease;
+        }
+        .degree-card:hover { transform: translateY(-5px); box-shadow: var(--hover-shadow); }
+
+        .workshop-wrapper { max-height: 450px; overflow-y: auto; border-radius: 10px; border: 1px solid #eee; background: white; }
+        .workshop-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+        .workshop-table thead th { position: sticky; top: 0; background: var(--deep-purple); color: white; padding: 10px; text-align: left; z-index: 5; text-transform: uppercase; font-size: 0.7rem; }
+        
+        .workshop-table td { padding: 8px 10px; border-bottom: 1px solid #f5f5f5; color: #555; vertical-align: top; transition: 0.2s; }
+        .workshop-table tr:hover td { background: #f8f7ff; color: var(--deep-purple); font-weight: 600; }
+
+        .btn-linkedin { display: inline-block; padding: 8px 20px; background: var(--deep-purple); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; margin-top: 10px; font-size: 0.8rem; transition: 0.3s; }
+        .btn-linkedin:hover { background: var(--soft-purple); transform: scale(1.05); }
+
+        footer { padding: 15px; background: #2d3436; color: white; text-align: center; font-size: 0.7rem; }
+
+        @media (max-width: 768px) {
+            header { padding: 15px 5%; text-align: center; }
+            .logo-container { text-align: center; }
+            .header-flex { flex-direction: column-reverse; align-items: center; gap: 15px; }
+            .hero-image-container { flex: 0 0 auto; width: 160px; }
+            .profile-img { height: 200px; }
+            h1 { font-size: 1.6rem; }
+            .contact-top { justify-content: center; }
+            .exp-list { grid-template-columns: 1fr; text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="reveal">
+        <div class="logo-container">
+            <img loading="lazy" src="https://drive.google.com/thumbnail?id=1B_Y5fMgtl3iulon-dhCnc6Y-RbB07BBl&sz=w500" alt="Learnlike Logo" class="logo-img">
+        </div>
+        <div class="header-flex">
+            <div class="hero-content">
+                <p class="subtitle">Chief Operating Officer & Co-Founder</p>
+                <h1>Thiyagarajan<br>Palanisamy</h1>
+                <div class="contact-top">
+                    <span><i class="fas fa-envelope"></i> <a href="mailto:thiyagarajan.palanisamy@learnlike.co.in">thiyagarajan.palanisamy@learnlike.co.in</a></span>
+                    <span><i class="fas fa-globe"></i> <a href="https://learnlike.in/" target="_blank">learnlike.in</a></span>
+                </div>
+                <div class="exp-summary">
+                    <h2>Professional Experience Summary</h2>
+                    <ul class="exp-list">
+                        <li><i class="fas fa-check-circle"></i> <span><strong>COO @ Learnlike:</strong> 100+ programs & workshops conducted.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span><strong>Operations:</strong> Head of K-12 content for Tamizh App.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span><strong>Tech Strategy:</strong> MS Educator Trainer & Power BI certified.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span><strong>Creative:</strong> UI/UX (Figma) & Expert Video Editing.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span><strong>High-Tech:</strong> 8+ years Sr Process Engineer @ Micron.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span><strong>Research:</strong> Risk Assessment & Inventory (SUTD).</span></li>
+                    </ul>
+                </div>
+                <a href="https://www.linkedin.com/in/thiyagarajan-palanisamy-9875a0282/" target="_blank" class="btn-linkedin">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+            <div class="hero-image-container">
+                <img loading="lazy" src="https://drive.google.com/thumbnail?id=1HBeUgnw3jMJhRGBm6ekY_7L8RpwAKCX1&sz=w1000" alt="Profile Photo" class="profile-img">
+            </div>
+        </div>
+    </header>
+
+    <section id="roadmap" class="reveal">
+        <h2 class="section-title">Career Milestones</h2>
+        <div class="roadmap-row">
+            <div class="roadmap-card" style="border-left-color: #ff9f43;">
+                <div class="year-tag">2021</div>
+                <h3 style="color: #e67e22;">Learnlike Education Tech</h3>
+                <p>COO & Co-Founder</p>
+                <ul>
+                    <li>Operations head for Learnlike Education Tech Company</li>
+                    <li>100+ trainings & hackathons.</li>
+					<li>Project Management, Guidance and Daily resource allocation.</li>
+                </ul>
+            </div>
+            <div class="roadmap-card">
+                <div class="year-tag">2019</div>
+                <h3>SUTD, Singapore</h3>
+                <p>Research Senior Associate</p>
+                <ul>
+                    <li>Handling of quotes and purchase (Procurement)</li>
+					<li>Inventory Management</li>
+                    <li>Safety & Risk assessment.</li>
+                </ul>
+            </div>
+            <div class="roadmap-card">
+                <div class="year-tag">2010</div>
+                <h3>Micron Technology</h3>
+                <p>Senior Process Engineer</p>
+                <ul>
+                    <li>Shift Lead,managing a 15-member team for 3 years.</li>
+					<li>Mentor & Trainer for new hires.</li>
+                    <li>Yield improvement, Root Cause Analysis & Cost reduction</li>
+                </ul>
+            </div>
+            <div class="roadmap-card">
+                <div class="year-tag">2006</div>
+                <h3>HCL Technologies Ltd</h3>
+                <p>Member Technical Staff</p>
+                <ul>
+					<li>CAD Design using ProE and AutoCAD</li>
+					<li>Engineering changes and quality checks.</li>
+					<li>Product Life Cycle Management (ECR/ECO).</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="competencies" class="reveal">
+        <h2 class="section-title">Skills & Certifications</h2>
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <div class="carousel-item">Leadership</div><div class="carousel-item">Microsoft Educator Trainer</div><div class="carousel-item">Power BI</div><div class="carousel-item">UI/UX Figma</div><div class="carousel-item">Generative AI</div><div class="carousel-item">VSDC Editing</div><div class="carousel-item">Project Management</div><div class="carousel-item">CAD Tools</div>
+                <div class="carousel-item">Leadership</div><div class="carousel-item">Microsoft Educator Trainer</div><div class="carousel-item">Power BI</div><div class="carousel-item">UI/UX Figma</div><div class="carousel-item">Generative AI</div><div class="carousel-item">VSDC Editing</div><div class="carousel-item">Project Management</div><div class="carousel-item">CAD Tools</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="reveal">
+        <h2 class="section-title">Academic Credentials</h2>
+        <div class="degree-grid">
+            <div class="degree-card">
+                <i class="fas fa-graduation-cap" style="color: var(--soft-purple); font-size: 1.2rem; margin-bottom: 8px;"></i>
+                <h4>M.S. in Smart Product Design</h4>
+                <p>Nanyang Technological University, Singapore</p>
+            </div>
+            <div class="degree-card">
+                <i class="fas fa-university" style="color: var(--soft-purple); font-size: 1.2rem; margin-bottom: 8px;"></i>
+                <h4>B.E. in Production Engineering</h4>
+                <p>Amrita Vishwa Vidyapeetham, India</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="workshops" class="reveal">
+        <h2 class="section-title">Executive Training Portfolio</h2>
+        <div class="workshop-wrapper" loading="lazy">
+            <table class="workshop-table">
+                <thead>
+                    <tr><th style="width: 15%">Timeline</th><th style="width: 35%">Institution</th><th style="width: 50%">Training Title</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Feb 3-4, 2026</td><td>DMW Electric India Private Ltd</td><td>Electric Motor Manufacturing – Theory & Practice</td></tr>
+                    <tr><td>Jan 6-8, 2026</td><td>Karpagam Academy of Higher Education</td><td>AI for Data Analysis and Automation</td></tr>
+                    <tr><td>Jan 1, 2026</td><td>Product Launch (Opal AI)</td><td>ResearchScribe AI</td></tr>
+                    <tr><td>Dec 24, 2025</td><td>Sri Ramakrishna Institute of Technology (SRIT)</td><td>Cybersecurity, Career Path & Network Security</td></tr>
+                    <tr><td>Dec 18, 2025</td><td>Coimbatore Institute of Technology</td><td>AI for Academic Excellence</td></tr>
+                    <tr><td>Dec 6, 2025</td><td>Ramco Institute of Technology (RIT)</td><td>Tech Pragna – Season 3 Hackathon</td></tr>
+                    <tr><td>Nov 19, 2025</td><td>Dr. N.G.P. Arts and Science College</td><td>Integrating Mathematical Thinking into AI</td></tr>
+                    <tr><td>Nov 20, 2025</td><td>Dr. N.G.P. Arts and Science College</td><td>AI Revolution in Life Sciences</td></tr>
+                    <tr><td>Nov 21, 2025</td><td>Dr. N.G.P. Arts and Science College</td><td>Smart Commerce through Mathematics and AI</td></tr>
+                    <tr><td>Nov 25-Jan 26</td><td>Dr. GRD College of Arts and Science</td><td>AI Tools in Daily Life</td></tr>
+                    <tr><td>Oct 2025</td><td>AIC RAISE / Rathinam Institution</td><td>Business School Strategy Event</td></tr>
+                    <tr><td>Sept-Oct 2025</td><td>Wondr Diamonds, Coimbatore</td><td>AI Tools Training</td></tr>
+                    <tr><td>Sept 22, 2025</td><td>Hindusthan College of Arts and Science (HICAS)</td><td>Career Counselling</td></tr>
+                    <tr><td>Aug 18-22, 2025</td><td>Government College of Technology (GCT)</td><td>AI for Academia</td></tr>
+                    <tr><td>Aug 18-23, 2025</td><td>Hindusthan College of Arts and Science (HICAS)</td><td>AI and Cybersecurity for Sustainable Future</td></tr>
+                    <tr><td>Aug 13, 2025</td><td>Sardar Vallabhbhai Patel International School of Textiles & Management (SVPISTM)</td><td>Data-Driven Decisions in Textile Supply Chain</td></tr>
+                    <tr><td>Aug 6, 2025</td><td>Ramco Institute of Technology (RIT)</td><td>Student Placement Readiness</td></tr>
+                    <tr><td>July 21-25, 2025</td><td>Government College of Technology (GCT)</td><td>AI for Academia</td></tr>
+                    <tr><td>June 25, 2025</td><td>DMW CNC Solution India</td><td>Operator Upskilling</td></tr>
+                    <tr><td>June 5-6, 2025</td><td>Hindusthan College of Arts and Science (HICAS) (HICAS) (HICAS)</td><td>AI Tools for Microbiology, Biotech & Food Processing</td></tr>
+                    <tr><td>May 20, 2025</td><td>Sardar Vallabhbhai Patel International School of Textiles & Management (SVPISTM)</td><td>12 Traits for Career Excellence</td></tr>
+                    <tr><td>May 5-9, 2025</td><td>Unison Consulting, Singapore</td><td>AI for HR and Delivery Managers</td></tr>
+                    <tr><td>Mar 10-15, 2025</td><td>Sri Eshwar College of Engineering</td><td>AI Driven Innovation in Mechanical Engineering</td></tr>
+                    <tr><td>Mar 24-28, 2025</td><td>Sri Eshwar College of Engineering</td><td>Data Science and Analytics for Mechanical Engineers</td></tr>
+                    <tr><td>Feb 7-9, 2025</td><td>Newswriters.in</td><td>AI Tools for Media Professionals</td></tr>
+                    <tr><td>Dec 18-20, 2024</td><td>RVS College of Education</td><td>Microsoft, 5S & AI tools in Teaching</td></tr>
+                    <tr><td>Nov 19, 2024</td><td>Cherraan's Krishna College of Engineering</td><td>Yanthra 2024 Science Expo</td></tr>
+                    <tr><td>Nov 12, 2024</td><td>RVS College of Nursing</td><td>Digital Literacy & AR/VR in Medical Sciences</td></tr>
+                    <tr><td>Oct 28, 2024</td><td>SNS College of Technology</td><td>AI Transforming Business</td></tr>
+                    <tr><td>Oct 25, 2024</td><td>Sri Eshwar College of Engineering</td><td>Cybersecurity + AI in Business</td></tr>
+                    <tr><td>Oct 16, 2024</td><td>Sri Eshwar College of Engineering</td><td>AI and Machine Learning Algorithms</td></tr>
+                    <tr><td>Oct 15, 2024</td><td>Sardar Vallabhbhai Patel International School of Textiles & Management (SVPISTM)</td><td>Marketing Analytics & Retail Business Management</td></tr>
+                    <tr><td>Aug 16-19, 2024</td><td>Dr. GRD College of Arts and Science</td><td>Teaching with Technology: AI Powered Education</td></tr>
+                    <tr><td>July 29-31, 2024</td><td>PPG College of Education</td><td>Microsoft, 5S & AI tools in Teaching</td></tr>
+                    <tr><td>July 27-29, 2024</td><td>Dr. G.R. Damodaran College of Education</td><td>Microsoft, 5S & AI tools in Teaching</td></tr>
+                    <tr><td>May 23, 2024</td><td>CS Academy</td><td>Leveraging AI Tools in Education</td></tr>
+                    <tr><td>June 2023</td><td>Bishop Appasamy College</td><td>Microsoft 365 tools in Teaching</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Thiyagarajan Palanisamy | COO & Co-Founder, Learnlike Education Tech</p>
+    </footer>
+
+    <script>
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Executive Portfolio | Thiyagarajan Palanisamy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -41,8 +41,34 @@
             background: radial-gradient(circle at top right, #f3f0ff 0%, #ffffff 40%);
         }
 
-        .logo-container { text-align: left; margin-bottom: 10px; }
-        .logo-img { height: 55px; width: auto; max-width: 100%; object-fit: contain; }
+        /* --- Logo Container & CDN Image Layout --- */
+        .logo-container { 
+            display: flex; 
+            align-items: center; 
+            gap: 25px; 
+            margin-bottom: 15px; 
+            flex-wrap: wrap;
+        }
+
+        .logo-link {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .logo-link:hover {
+            transform: translateY(-2px);
+            opacity: 0.85;
+        }
+
+        .logo-img { 
+            height: 48px; 
+            width: auto; 
+            max-width: 200px; 
+            object-fit: contain; 
+            display: block;
+        }
 
         .header-flex {
             display: flex;
@@ -65,9 +91,37 @@
         .profile-img:hover { transform: translate(-3px, -3px); box-shadow: 14px 14px 0px var(--deep-purple); }
 
         h1 { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; color: var(--deep-purple); line-height: 1.1; margin-bottom: 5px; }
-        .subtitle { font-size: 0.85rem; font-weight: 700; color: var(--soft-purple); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1.2px; }
         
-        .contact-top { font-size: 0.8rem; margin-bottom: 15px; display: flex; flex-wrap: wrap; gap: 12px; color: #555; }
+        /* Updated subtitle with extra bold titles and line spacing */
+        .subtitle { 
+            font-size: 0.85rem; 
+            font-weight: 700; 
+            color: var(--soft-purple); 
+            margin-bottom: 8px; 
+            text-transform: uppercase; 
+            letter-spacing: 1.2px; 
+            line-height: 1.7; 
+        }
+
+        .subtitle strong {
+            font-weight: 800;
+            color: var(--deep-purple);
+        }
+
+        /* Updated contact block to stack company links under email */
+        .contact-top { 
+            font-size: 0.8rem; 
+            margin-bottom: 15px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 6px; 
+            color: #555; 
+        }
+        .contact-links-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
         .contact-top a { color: var(--deep-purple); text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; transition: 0.3s; }
         .contact-top a:hover { color: var(--soft-purple); border-bottom: 1px solid var(--soft-purple); }
 
@@ -156,12 +210,13 @@
 
         @media (max-width: 768px) {
             header { padding: 15px 5%; text-align: center; }
-            .logo-container { text-align: center; }
+            .logo-container { justify-content: center; }
             .header-flex { flex-direction: column-reverse; align-items: center; gap: 15px; }
             .hero-image-container { flex: 0 0 auto; width: 160px; }
             .profile-img { height: 200px; }
             h1 { font-size: 1.6rem; }
-            .contact-top { justify-content: center; }
+            .contact-top { align-items: center; }
+            .contact-links-group { justify-content: center; }
             .exp-list { grid-template-columns: 1fr; text-align: left; }
         }
     </style>
@@ -170,23 +225,40 @@
 
     <header class="reveal">
         <div class="logo-container">
-            <img loading="lazy" src="https://drive.google.com/thumbnail?id=1B_Y5fMgtl3iulon-dhCnc6Y-RbB07BBl&sz=w500" alt="Learnlike Logo" class="logo-img">
+            <!-- 1. Learnlike Logo (First) -->
+            <a href="https://learnlike.in/" target="_blank" class="logo-link" title="Learnlike">
+                <img loading="lazy" src="https://lh3.googleusercontent.com/d/1iECWOam2e5TpDgAGzX1_tLLJ335ZkhbY=w500" alt="Learnlike Logo" class="logo-img">
+            </a>
+            <!-- 2. Tdelve Logo (Second) -->
+            <a href="https://tdelve.com/" target="_blank" class="logo-link" title="Tdelve">
+                <img loading="lazy" src="https://lh3.googleusercontent.com/d/1tl7DVOAEjkAqKIa5ki_FJeULxRITIbGD=w500" alt="Tdelve Logo" class="logo-img">
+            </a>
         </div>
         <div class="header-flex">
             <div class="hero-content">
-                <p class="subtitle">Chief Operating Officer & Co-Founder</p>
+                <p class="subtitle">
+                    <strong>Group COO, Learnlike Group of Companies, Coimbatore</strong><br>
+                    <strong>CEO, TDELVE</strong>
+                </p>
                 <h1>Thiyagarajan<br>Palanisamy</h1>
                 <div class="contact-top">
-                    <span><i class="fas fa-envelope"></i> <a href="mailto:thiyagarajan.palanisamy@learnlike.co.in">thiyagarajan.palanisamy@learnlike.co.in</a></span>
-                    <span><i class="fas fa-globe"></i> <a href="https://learnlike.in/" target="_blank">learnlike.in</a></span>
+                    <div>
+                        <span><i class="fas fa-envelope"></i> <a href="mailto:thiyagarajan.palanisamy@learnlike.co.in">thiyagarajan.palanisamy@learnlike.co.in</a></span>
+                    </div>
+                    <div class="contact-links-group">
+                        <span><i class="fas fa-globe"></i> <a href="https://learnlike.in" target="_blank">learnlike.in</a></span>
+                        <span><i class="fas fa-globe"></i> <a href="https://tdelve.com/" target="_blank">tdelve.com</a></span>
+                        <span><i class="fas fa-globe"></i> <a href="https://deskjobs.in/" target="_blank">deskjobs.in</a></span>
+                        <span><i class="fas fa-globe"></i> <a href="https://lanternettechnologyservices.com/" target="_blank">lanternettechnologyservices.com</a></span>
+                    </div>
                 </div>
                 <div class="exp-summary">
                     <h2>Professional Experience Summary</h2>
                     <ul class="exp-list">
-                        <li><i class="fas fa-check-circle"></i> <span><strong>COO @ Learnlike:</strong> 100+ programs & workshops conducted.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span><strong>CEO @ TDELVE (2025–Present):</strong> IT-ITES (India, USA, Canada) - End-to-end solutions (LMS, OJT, HRMS, Apps).</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span><strong>Group COO @ Learnlike:</strong> 100+ programs & workshops conducted.</span></li>
                         <li><i class="fas fa-check-circle"></i> <span><strong>Operations:</strong> Head of K-12 content for Tamizh App.</span></li>
                         <li><i class="fas fa-check-circle"></i> <span><strong>Tech Strategy:</strong> MS Educator Trainer & Power BI certified.</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span><strong>Creative:</strong> UI/UX (Figma) & Expert Video Editing.</span></li>
                         <li><i class="fas fa-check-circle"></i> <span><strong>High-Tech:</strong> 8+ years Sr Process Engineer @ Micron.</span></li>
                         <li><i class="fas fa-check-circle"></i> <span><strong>Research:</strong> Risk Assessment & Inventory (SUTD).</span></li>
                     </ul>
@@ -204,10 +276,19 @@
     <section id="roadmap" class="reveal">
         <h2 class="section-title">Career Milestones</h2>
         <div class="roadmap-row">
+            <div class="roadmap-card" style="border-left-color: #4834d4;">
+                <div class="year-tag">2025</div>
+                <h3 style="color: #4834d4;">TDELVE</h3>
+                <p>CEO (2025 – Present)</p>
+                <ul>
+                    <li>IT-ITES Services across India, USA & Canada.</li>
+                    <li>Customized software solutions: LMS, OJT platforms, HRMS & placement apps.</li>
+                </ul>
+            </div>
             <div class="roadmap-card" style="border-left-color: #ff9f43;">
                 <div class="year-tag">2021</div>
-                <h3 style="color: #e67e22;">Learnlike Education Tech</h3>
-                <p>COO & Co-Founder</p>
+                <h3 style="color: #e67e22;">Learnlike Group</h3>
+                <p>Group COO & Co-Founder</p>
                 <ul>
                     <li>100+ trainings & hackathons.</li>
                     <li>Head of content for K-12 Tamizh App.</li>
@@ -270,12 +351,14 @@
 
     <section id="workshops" class="reveal">
         <h2 class="section-title">Executive Training Portfolio</h2>
-        <div class="workshop-wrapper" loading="lazy">
+        <div class="workshop-wrapper">
             <table class="workshop-table">
                 <thead>
                     <tr><th style="width: 15%">Timeline</th><th style="width: 35%">Institution</th><th style="width: 50%">Training Title</th></tr>
                 </thead>
                 <tbody>
+                    <tr><td>August 4–8, 2026</td><td>Sri Ramakrishna Institute of Technology (SRIT)</td><td>FDP: Artificial Intelligence for Mathematics Education, Teaching, Research and Assessment</td></tr>
+                    <tr><td>June 4, 2026</td><td>Hindusthan College of Arts & Science (HICAS)</td><td>Digital Pedagogy & ICT Integration in Higher Education</td></tr>
                     <tr><td>April 7-9, 2026</td><td>Hindusthan College of Arts and Science (HICAS)</td><td>Smart Biotech: Integrating AI & ML in Life Sciences</td></tr>
                     <tr><td>April 6-9, 2026</td><td>Hindusthan College of Arts and Science (HICAS)</td><td>AI & ML in Biotechnology: Research to Applications</td></tr>
                     <tr><td>Feb 3-4, 2026</td><td>DMW Electric India Private Ltd</td><td>Electric Motor Manufacturing – Theory & Practice</td></tr>
@@ -321,7 +404,7 @@
     </section>
 
     <footer>
-        <p>© 2024 Thiyagarajan Palanisamy | COO & Co-Founder, Learnlike Education Tech</p>
+        <p>© 2026 Thiyagarajan Palanisamy | Group COO, Learnlike Group of Companies | CEO, TDELVE</p>
     </footer>
 
     <script>
